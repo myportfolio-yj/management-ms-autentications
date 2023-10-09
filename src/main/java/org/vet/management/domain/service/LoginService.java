@@ -15,6 +15,9 @@ public class LoginService {
   IPasswordEncryption passwordEncryption;
   public String login(Body body) {
     User user = loginRepository.findByEmail(body.getEmail());
-    return (passwordEncryption.checkPassword(body.getPassword(), user.getPassword())) ? "Logeado" : "Error";
+    System.out.println(body.getPassword());
+    System.out.println(user.getPassword());
+    boolean flag = passwordEncryption.checkPassword(body.getPassword(), user.getPassword());
+    return ( flag ) ? "Logeado" : "Error";
   }
 }
